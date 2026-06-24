@@ -1,0 +1,42 @@
+import 'package:cricket_live_hd/core/services/firebase_service.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../core/app_providers.dart';
+
+class NotificationHistoryScreen extends ConsumerWidget {
+  static const routeName = '/notifications';
+  const NotificationHistoryScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final fs = ref.watch(firebaseServiceProvider);
+    return Scaffold(
+      appBar: AppBar(title: const Text('Notifications')),
+      body: StreamBuilder<List<Map<String, dynamic>>>(
+        stream: fs.notificationsStream(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) return Center(child: CircularProgressIndicator());
+          final notifs = snapshot.data!;
+          if (notifs.isEmpty) return Center(child: Text('No notifications yet'));
+          return ListView.builder(
+            itemCount: notifs.length,
+            itemBuilder: (context, index) {
+              final n = notifs[index];
+              return ListTile(
+                leading: n['logo_url'] != null && n['logo_url'] != '' ? Image.network(n['logo_url'], width: 48) : null,
+                title: Text(n['title'] ?? ''),
+                subtitle: Text(n['message'] ?? ''),
+                onTap: () {
+                  final clickUrl = n['click_url'];
+                  if (clickUrl != null) {
+                    // open url or channel
+                  }
+                },
+              );
+            },
+          );
+        },
+      ),
+    );
+  }
+}
