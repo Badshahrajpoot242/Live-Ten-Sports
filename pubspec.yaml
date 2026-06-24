@@ -1,0 +1,41 @@
+
+name: cricket_live_hd
+description: Cricket Live HD - dynamic streaming app powered by Firebase Realtime Database
+publish_to: "none"
+
+environment:
+  sdk: ">=2.17.0 <3.0.0"
+  flutter: ">=3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  flutter_riverpod: ^2.0.0
+  firebase_core: ^2.8.0
+  firebase_database: ^10.0.7
+  firebase_messaging: ^14.4.0
+  flutter_local_notifications: ^12.0.4
+  google_mobile_ads: ^2.4.0
+  better_player: ^0.0.87
+  youtube_player_flutter: ^8.1.0
+  flutter_webrtc: ^0.9.21
+  flutter_vlc_player: ^8.0.0
+  webview_flutter: ^4.0.7
+  share_plus: ^6.3.0
+  connectivity_plus: ^4.0.2
+  shimmer: ^2.0.0
+  url_launcher: ^6.1.10
+  intl: ^0.18.0
+  package_info_plus: ^3.0.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
